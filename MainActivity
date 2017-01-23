@@ -18,7 +18,7 @@ import retrofit.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-private Button buttonSignup;
+private Button buttonApiCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -26,12 +26,15 @@ private Button buttonSignup;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        buttonApiCall=(Button) findViewById(R.id.buttonApiCall);
         
-        buttonSignup.setOnClickListener(new View.OnClickListener() {
+        
+        buttonApiCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             apiCall(); //Post call method
             }
+        });
     }
     
     
