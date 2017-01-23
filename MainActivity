@@ -5,12 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.google.gson.JsonElement;
 
 import org.json.JSONObject;
 
 import com.appcode.R;
 
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
+
+private Button buttonSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -18,15 +26,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        apiCall(); //Post call method
+        
+        buttonSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            apiCall(); //Post call method
+            }
     }
+    
+    
     
     private void apiCall() {
 
         final ProgressDialog progressDialog = ProgressDialog.show(SignupActivity.this, null, "Loading...", false,false);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL) // put your base url
+                .baseUrl(Constants.BASE_URL) // put your base url like this "http://www.appcodeinfotech.com/"
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -34,11 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Params what you want to send
         Map<String, String> params = new HashMap<String, String>();
-        params.put("first_name", edt_firstname.getText().toString().trim());
-        params.put("last_name", edt_lastname.getText().toString().trim());
-        params.put("email", edt_emailid.getText().toString().trim());
-        params.put("mobile", edt_mobile.getText().toString().trim());
-        params.put("password", edt_password.getText().toString().trim());
+        params.put("first_name", "Sikander");
+        params.put("last_name", "Bhutto");
 
         Call<JsonElement> result = service.signUpUser(params);
 
