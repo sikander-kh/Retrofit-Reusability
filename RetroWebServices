@@ -1,0 +1,22 @@
+package com.appcode.webservices;
+
+import com.google.gson.JsonElement;
+
+import java.util.Map;
+
+import retrofit.Call;
+import retrofit.http.Body;
+import retrofit.http.POST;
+import retrofit.http.QueryMap;
+
+/**
+ * Created by sikander on 17/12/16.
+ */
+public interface RetroWebServices {
+
+    @POST("login")
+    Call<JsonElement> loginUser(@QueryMap Map<String, String> params);
+
+    @POST("users")
+    Call<JsonElement> signUpUser(@Body Map<String, Object> body);
+}
